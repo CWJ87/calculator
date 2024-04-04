@@ -11,11 +11,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Roboto", sans-serif;    
+    font-family: "Roboto", sans-serif;
+    background-color: #cceeff;
 }
 
 .calculator {
-    border: 1px solid black;
+    border: 5px double black;
     border-radius: 5px;
     width: 300px;    
     display: flex;
@@ -38,10 +39,14 @@ body {
     font-size: 44px;
     padding-top: 40px;
     font-weight: 700;
+    background-color: #161a20;
+    color: #ffffff;
 }
 
 .display .operation-display {
-    font-size: 22px;    
+    font-size: 22px;
+    background-color: #20252e;
+    color: #717f93;    
 }
 
 .calculator .button-group {    
@@ -50,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;    
     gap: 3px;
-    /* justify-content: space-between; */
+    background-color: #161a20;
 }
 
 .button-group .button-row {
@@ -62,10 +67,28 @@ body {
 .button-row button {
     flex: 1;
     padding: 10px;
-    font-size: 22px;    
+    font-size: 30px;
+    color: #c3daf7;
 }
 
 /* double the size of the zero button */
 .button-row:nth-child(5) button.number {
     flex: 2 ;
+}
+
+/* button colors */
+.button-row button.number,
+.button-row button.decimal {
+    background-color: #242933;
+}
+
+.button-row button.operator,
+.button-row button.equals {
+    background-color: #0060e5;
+}
+
+.button-row button.all-clear,
+.button-row button.sign-change,
+.button-row button.backspace {
+    background-color: #363e4c;
 }
