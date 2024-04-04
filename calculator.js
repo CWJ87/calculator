@@ -3,6 +3,30 @@
 // parts of the calculator operation
 let operand1, operator, operand2;
 
+// calculator's display
+const resultDisplay = document.querySelector(".result-display");
+const operationDisplay = document.querySelector(".operation-display");
+
+// calculator's buttons
+const numberButtons = document.querySelectorAll(".number");
+numberButtons.forEach(numberButton => handleNumberButtonClick);
+
+// initialize and reset calculator's memory
+function initializeCalculator() {
+    operand1 = "0";
+    operator = "";
+    operand2 = "";
+
+    resultDisplay.textContent = operand1;
+    operationDisplay.textContent = "";
+}
+
+// handles number (0-9) input from user
+function handleNumberButtonClick() {
+
+
+}
+
 // functions for basic math operators
 function add(operand1, operand2) {
     return operand1 + operand2;
@@ -40,3 +64,5 @@ function operate(operand1, operator, operand2) {
             divide(operand1, operand2);
     }
 }
+
+initializeCalculator();
