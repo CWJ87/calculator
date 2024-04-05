@@ -162,9 +162,9 @@ function handleOperatorButtonClick() {
         const prevOperation = operationDisplay.textContent.split(" ")[1];
 
         operate(operand1, prevOperation, operand2);
-        
-
-
+        operand1 = resultDisplay.textContent;
+        operand2 = "";
+        operationDisplay.textContent = `${operand1} ${operator}`;
     }
 }
 
