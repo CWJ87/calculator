@@ -36,17 +36,20 @@ body {
 }
 
 .display .result-display {
-    font-size: 44px;
+    font-size: 40px;
     padding-top: 40px;
     font-weight: 700;
     background-color: #161a20;
     color: #ffffff;
+    height: 100px;
 }
 
 .display .operation-display {
     font-size: 22px;
     background-color: #20252e;
-    color: #717f93;    
+    color: #717f93;
+    height: 50px;
+
 }
 
 .calculator .button-group {    

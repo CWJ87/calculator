@@ -8,6 +8,10 @@ const MAX_DIGITS = 16;
 // calculator's display
 const resultDisplay = document.querySelector(".result-display");
 const operationDisplay = document.querySelector(".operation-display");
+const DISPLAY_LARGE = "40px";
+const DISPLAY_SMALL = "30px";
+
+
 
 // calculator's buttons
 const numberButtons = document.querySelectorAll(".number");
@@ -27,10 +31,14 @@ function initializeCalculator() {
 }
 
 function setResultDisplay(number) {
+    if (resultDisplay.textContent.length <= 5) {
+        resultDisplay.style.fontSize = DISPLAY_LARGE;
+    }
+    else {
+        resultDisplay.style.fontSize = DISPLAY_SMALL;
+    }
 
-
-
-
+    resultDisplay.textContent = number;
 }
 
 // handles number (0-9) input from user
@@ -52,9 +60,7 @@ function handleNumberButtonClick() {
                 setResultDisplay(operand1);
             }
         }
-
     }
-
 }
 
 // functions for basic math operators
