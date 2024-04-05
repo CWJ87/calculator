@@ -2,6 +2,8 @@
 
 // parts of the calculator operation
 let operand1, operator, operand2;
+let isEditOperand2;
+const MAX_DIGITS = 16;
 
 // calculator's display
 const resultDisplay = document.querySelector(".result-display");
@@ -9,21 +11,49 @@ const operationDisplay = document.querySelector(".operation-display");
 
 // calculator's buttons
 const numberButtons = document.querySelectorAll(".number");
-numberButtons.forEach(numberButton => handleNumberButtonClick);
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener("click", handleNumberButtonClick);
+});
 
 // initialize and reset calculator's memory
 function initializeCalculator() {
     operand1 = "0";
     operator = "";
     operand2 = "";
+    isEditOperand2 = false;
 
     resultDisplay.textContent = operand1;
     operationDisplay.textContent = "";
 }
 
+function setResultDisplay(number) {
+
+
+
+
+}
+
 // handles number (0-9) input from user
 function handleNumberButtonClick() {
+    const buttonNumber = this.textContent;
 
+   // Check if the current display's length is less than 16 (max digits)
+    if (resultDisplay.textContent.length < MAX_DIGITS) {
+        // input for the first operand
+        if (!isEditOperand2) {
+            if (buttonNumber !== "0" && operand1 === "0") {
+                operand1 = buttonNumber;
+                resultDisplay.textContent = operand1;
+                setResultDisplay(operand1);
+            }
+            else if (operand1 !== "0") {
+                operand1 += buttonNumber;
+                resultDisplay.textContent = operand1;
+                setResultDisplay(operand1);
+            }
+        }
+
+    }
 
 }
 
