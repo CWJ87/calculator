@@ -13,6 +13,9 @@ const operationDisplay = document.querySelector(".operation-display");
 const clearButton = document.querySelector(".all-clear");
 clearButton.addEventListener("click", initializeCalculator);
 
+const signChangeButton = document.querySelector(".sign-change");
+signChangeButton.addEventListener("click", handleSignChangeButtonClick);
+
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", handleNumberButtonClick);
@@ -27,6 +30,31 @@ function initializeCalculator() {
 
     resultDisplay.textContent = operand1;    
     operationDisplay.textContent = "";
+}
+
+// handles whether the current number is positive or negative
+function handleSignChangeButtonClick() {
+    let resultDisplayNumber = resultDisplay.textContent;
+
+    if (resultDisplay.textContent !== "0") {
+        // check if the result display contains a sign (-)
+        if (!resultDisplayNumber.includes("-")) {
+            resultDisplayNumber = "-" + resultDisplayNumber;
+        }
+        else {
+            resultDisplayNumber = resultDisplayNumber.slice(1);
+        }
+    
+        // update the corresponding operand and the result display
+        if (!isEditOperand2) {
+            operand1 = resultDisplayNumber;
+        }
+        else {
+            operand2 = resultDisplayNumber;
+        }
+    }
+
+    resultDisplay.textContent = resultDisplayNumber;
 }
 
 // handles number (0-9) input from user
