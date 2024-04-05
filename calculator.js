@@ -19,10 +19,14 @@ signChangeButton.addEventListener("click", handleSignChangeButtonClick);
 const backspaceButton = document.querySelector(".backspace");
 backspaceButton.addEventListener("click", handleBackspaceButtonClick);
 
+const decimalButton = document.querySelector(".decimal");
+decimalButton.addEventListener("click", handleDecimalButtonClick);
+
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", handleNumberButtonClick);
 });
+
 
 // initialize and reset calculator's memory
 function initializeCalculator() {
@@ -78,7 +82,24 @@ function handleBackspaceButtonClick() {
         else {
             operand2 = operand2.slice(0, operand2.length - 1);
         }
+        
         resultDisplay.textContent = operand2;
+    }
+}
+
+// handles adding a decimal to the current number
+function handleDecimalButtonClick() {
+    if (!isEditOperand2) {
+        if (!operand1.includes(".")) {
+            operand1 += ".";
+            resultDisplay.textContent = operand1;
+        }
+    }
+    else {
+        if (!operand2.includes(".")) {
+            operand2 += ".";
+            resultDisplay.textContent = operand2;
+        }
     }
 }
 
