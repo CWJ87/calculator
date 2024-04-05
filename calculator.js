@@ -27,6 +27,11 @@ numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", handleNumberButtonClick);
 });
 
+const operatorButtons = document.querySelectorAll(".operator");
+operatorButtons.forEach(operatorButton => {
+    operatorButton.addEventListener("click", handleOperatorButtonClick);
+});
+
 
 // initialize and reset calculator's memory
 function initializeCalculator() {
@@ -120,6 +125,42 @@ function handleNumberButtonClick() {
                 resultDisplay.textContent = operand1;                
             }
         }
+        else { // input for second operand
+            if (buttonNumber !== "0" && operand2 === "0") {
+                operand2 = buttonNumber;
+                resultDisplay.textContent = operand2;                
+            }
+            else if (operand2 !== "0") {
+                operand2 += buttonNumber;
+                resultDisplay.textContent = operand2;                
+            }
+        }
+    }
+}
+
+// handles selecting operator and math operation
+function handleOperatorButtonClick() {
+    const operatorSigns = {
+        add: "+",
+        subtract: "-",
+        multiply: "x",
+        divide: "/"
+    };
+
+    // get formatted operator sign based on the button's operator name
+    operator = operatorSigns[this.classList[1]];    
+
+    // update the operation display with the operands and operator
+    if (!isEditOperand2) {
+        operationDisplay.textContent = `${operand1} ${operator}`;
+        isEditOperand2 = true;
+    }
+    else if (operand2 === "") {        
+        operationDisplay.textContent = `${operand1} ${operator}`;
+    }
+    else if (operand2 !== "") { // stringing multiple operations
+
+
     }
 }
 
