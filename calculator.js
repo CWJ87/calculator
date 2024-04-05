@@ -3,13 +3,16 @@
 // parts of the calculator operation
 let operand1, operator, operand2;
 let isEditOperand2;
-const MAX_DIGITS = 16;
+const MAX_DIGITS = 12;
 
 // calculator's display
 const resultDisplay = document.querySelector(".result-display");
 const operationDisplay = document.querySelector(".operation-display");
 
 // calculator's buttons
+const clearButton = document.querySelector(".all-clear");
+clearButton.addEventListener("click", initializeCalculator);
+
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", handleNumberButtonClick);
@@ -22,7 +25,7 @@ function initializeCalculator() {
     operand2 = "";
     isEditOperand2 = false;
 
-    resultDisplay.textContent = operand1;
+    resultDisplay.textContent = operand1;    
     operationDisplay.textContent = "";
 }
 
@@ -30,7 +33,7 @@ function initializeCalculator() {
 function handleNumberButtonClick() {
     const buttonNumber = this.textContent;
 
-   // Check if the current display's length is less than 16 (max digits)
+   // Check if the current display's length is less than 12 (max digits)
     if (resultDisplay.textContent.length < MAX_DIGITS) {
         // input for the first operand
         if (!isEditOperand2) {
