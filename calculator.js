@@ -16,6 +16,9 @@ clearButton.addEventListener("click", initializeCalculator);
 const signChangeButton = document.querySelector(".sign-change");
 signChangeButton.addEventListener("click", handleSignChangeButtonClick);
 
+const backspaceButton = document.querySelector(".backspace");
+backspaceButton.addEventListener("click", handleBackspaceButtonClick);
+
 const numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(numberButton => {
     numberButton.addEventListener("click", handleNumberButtonClick);
@@ -55,6 +58,28 @@ function handleSignChangeButtonClick() {
     }
 
     resultDisplay.textContent = resultDisplayNumber;
+}
+
+// handles removing last digit from a number
+function handleBackspaceButtonClick() {
+    if (!isEditOperand2) {
+        if (operand1.length === 1 || operand1.length === 2 && operand1[0] === "-") {
+            operand1 = "0";
+        }
+        else {
+            operand1 = operand1.slice(0, operand1.length - 1);
+        }
+        resultDisplay.textContent = operand1;
+    }
+    else {
+        if (operand2.length === 1 || operand2.length === 2 && operand2[0] === "-") {
+            operand2 = "0";
+        }
+        else {
+            operand2 = operand2.slice(0, operand2.length - 1);
+        }
+        resultDisplay.textContent = operand2;
+    }
 }
 
 // handles number (0-9) input from user
