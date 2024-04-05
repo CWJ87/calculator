@@ -159,6 +159,10 @@ function handleOperatorButtonClick() {
         operationDisplay.textContent = `${operand1} ${operator}`;
     }
     else if (operand2 !== "") { // stringing multiple operations
+        const prevOperation = operationDisplay.textContent.split(" ")[1];
+
+        operate(operand1, prevOperation, operand2);
+        
 
 
     }
@@ -166,23 +170,23 @@ function handleOperatorButtonClick() {
 
 // functions for basic math operators
 function add(operand1, operand2) {
-    return operand1 + operand2;
+    resultDisplay.textContent = +operand1 + +operand2;
 }
 
 function subtract(operand1, operand2) {
-    return operand1 - operand2;
+    resultDisplay.textContent = +operand1 - +operand2;
 }
 
 function multiply(operand1, operand2) {
-    return operand1 * operand2;
+    resultDisplay.textContent = +operand1 * +operand2;
 }
 
 function divide(operand1, operand2) {
-    if (operand2 === 0) {
-        return "You cannot divide by zero";
+    if (operand2 === "0") {
+        resultDisplay.textContent = "You cannot divide by zero";
     }
 
-    return operand1 / operand2;
+    resultDisplay.textContent = +operand1 / +operand2;
 }
 
 // will call one of the operation functions based on the selected operator
