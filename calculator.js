@@ -32,6 +32,8 @@ operatorButtons.forEach(operatorButton => {
     operatorButton.addEventListener("click", handleOperatorButtonClick);
 });
 
+const equalButton = document.querySelector(".equals");
+equalButton.addEventListener("click", handleEqualsButtonClick);
 
 // initialize and reset calculator's memory
 function initializeCalculator() {
@@ -168,6 +170,12 @@ function handleOperatorButtonClick() {
     }
 }
 
+// handles a math operation using two operands
+function handleEqualsButtonClick() {
+    operate(operand1, operator, operand2);
+    operationDisplay.textContent = `${operand1} ${operator} ${operand2} =`;    
+}
+
 // functions for basic math operators
 function add(operand1, operand2) {
     resultDisplay.textContent = +operand1 + +operand2;
@@ -183,10 +191,11 @@ function multiply(operand1, operand2) {
 
 function divide(operand1, operand2) {
     if (operand2 === "0") {
-        resultDisplay.textContent = "You cannot divide by zero";
+        resultDisplay.textContent = "Cannot divide by 0";
     }
-
-    resultDisplay.textContent = +operand1 / +operand2;
+    else {
+        resultDisplay.textContent = +operand1 / +operand2;
+    }
 }
 
 // will call one of the operation functions based on the selected operator
