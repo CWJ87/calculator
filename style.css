@@ -33,6 +33,8 @@ body {
 .display .result-display,
 .display .operation-display {
     padding: 10px;
+    border: none;
+    text-align: right;
 }
 
 .display .result-display {

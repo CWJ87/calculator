@@ -42,15 +42,15 @@ function initializeCalculator() {
     operand2 = "";
     isEditOperand2 = false;
 
-    resultDisplay.textContent = operand1;    
-    operationDisplay.textContent = "";
+    resultDisplay.value = operand1;    
+    operationDisplay.value = "";
 }
 
 // handles whether the current number is positive or negative
 function handleSignChangeButtonClick() {
-    let resultDisplayNumber = resultDisplay.textContent;
+    let resultDisplayNumber = resultDisplay.value;
 
-    if (resultDisplay.textContent !== "0") {
+    if (resultDisplay.value !== "0") {
         // check if the result display contains a sign (-)
         if (!resultDisplayNumber.includes("-")) {
             resultDisplayNumber = "-" + resultDisplayNumber;
@@ -68,7 +68,7 @@ function handleSignChangeButtonClick() {
         }
     }
 
-    resultDisplay.textContent = resultDisplayNumber;
+    resultDisplay.value = resultDisplayNumber;
 }
 
 // handles removing last digit from a number
@@ -80,7 +80,7 @@ function handleBackspaceButtonClick() {
         else {
             operand1 = operand1.slice(0, operand1.length - 1);
         }
-        resultDisplay.textContent = operand1;
+        resultDisplay.value = operand1;
     }
     else {
         if (operand2.length === 1 || operand2.length === 2 && operand2[0] === "-") {
@@ -90,7 +90,7 @@ function handleBackspaceButtonClick() {
             operand2 = operand2.slice(0, operand2.length - 1);
         }
         
-        resultDisplay.textContent = operand2;
+        resultDisplay.value = operand2;
     }
 }
 
@@ -99,13 +99,13 @@ function handleDecimalButtonClick() {
     if (!isEditOperand2) {
         if (!operand1.includes(".")) {
             operand1 += ".";
-            resultDisplay.textContent = operand1;
+            resultDisplay.value = operand1;
         }
     }
     else {
         if (!operand2.includes(".")) {
             operand2 += ".";
-            resultDisplay.textContent = operand2;
+            resultDisplay.value = operand2;
         }
     }
 }
@@ -114,30 +114,31 @@ function handleDecimalButtonClick() {
 function handleNumberButtonClick() {
     const buttonNumber = this.textContent;
 
-   // Check if the current display's length is less than 12 (max digits)
-    if (resultDisplay.textContent.length < MAX_DIGITS) {
-        // input for the first operand
-        if (!isEditOperand2) {
+    // input for the first operand
+    if (!isEditOperand2) {
+        if (operand1.length < MAX_DIGITS) {
             if (buttonNumber !== "0" && operand1 === "0") {
                 operand1 = buttonNumber;
-                resultDisplay.textContent = operand1;                
+                resultDisplay.value = operand1;                
             }
             else if (operand1 !== "0") {
                 operand1 += buttonNumber;
-                resultDisplay.textContent = operand1;                
-            }
-        }
-        else { // input for second operand
-            if (buttonNumber !== "0" && operand2 === "0") {
-                operand2 = buttonNumber;
-                resultDisplay.textContent = operand2;                
-            }
-            else if (operand2 !== "0") {
-                operand2 += buttonNumber;
-                resultDisplay.textContent = operand2;                
+                resultDisplay.value = operand1;                
             }
         }
     }
+    else { // input for second operand
+        if (operand2.length < MAX_DIGITS) {
+            if (buttonNumber !== "0" && operand2 === "0") {
+                operand2 = buttonNumber;
+                resultDisplay.value = operand2;                
+            }
+            else if (operand2 !== "0") {
+                operand2 += buttonNumber;
+                resultDisplay.value = operand2;                
+            }
+        }
+    }    
 }
 
 // handles selecting operator and math operation
@@ -154,47 +155,47 @@ function handleOperatorButtonClick() {
 
     // update the operation display with the operands and operator
     if (!isEditOperand2) {
-        operationDisplay.textContent = `${operand1} ${operator}`;
+        operationDisplay.value = `${operand1} ${operator}`;
         isEditOperand2 = true;
     }
     else if (operand2 === "") {        
-        operationDisplay.textContent = `${operand1} ${operator}`;
+        operationDisplay.value = `${operand1} ${operator}`;
     }
     else if (operand2 !== "") { // stringing multiple operations
-        const prevOperation = operationDisplay.textContent.split(" ")[1];
+        const prevOperation = operationDisplay.value.split(" ")[1];
 
         operate(operand1, prevOperation, operand2);
-        operand1 = resultDisplay.textContent;
+        operand1 = resultDisplay.value;
         operand2 = "";
-        operationDisplay.textContent = `${operand1} ${operator}`;
+        operationDisplay.value = `${operand1} ${operator}`;
     }
 }
 
 // handles a math operation using two operands
 function handleEqualsButtonClick() {
     operate(operand1, operator, operand2);
-    operationDisplay.textContent = `${operand1} ${operator} ${operand2} =`;    
+    operationDisplay.value = `${operand1} ${operator} ${operand2} =`;    
 }
 
 // functions for basic math operators
 function add(operand1, operand2) {
-    resultDisplay.textContent = +operand1 + +operand2;
+    resultDisplay.value = +operand1 + +operand2;
 }
 
 function subtract(operand1, operand2) {
-    resultDisplay.textContent = +operand1 - +operand2;
+    resultDisplay.value = +operand1 - +operand2;
 }
 
 function multiply(operand1, operand2) {
-    resultDisplay.textContent = +operand1 * +operand2;
+    resultDisplay.value = +operand1 * +operand2;
 }
 
 function divide(operand1, operand2) {
     if (operand2 === "0") {
-        resultDisplay.textContent = "Cannot divide by 0";
+        resultDisplay.value = "Cannot divide by 0";
     }
     else {
-        resultDisplay.textContent = +operand1 / +operand2;
+        resultDisplay.value = +operand1 / +operand2;
     }
 }
 
